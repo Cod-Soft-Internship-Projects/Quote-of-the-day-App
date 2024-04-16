@@ -57,7 +57,9 @@ class _FavoriteQuotesListScreenState extends State<FavoriteQuotesListScreen> {
                                             )));
                               },
                               tileColor: Colors.grey,
-                              leading: Icon(Icons.image),
+                              leading: CircleAvatar(
+                                backgroundImage: AssetImage('assets/logo.jpg'),
+                              ),
                               title: Text(
                                 data[index]['favQuote'],
                                 maxLines: 1,
