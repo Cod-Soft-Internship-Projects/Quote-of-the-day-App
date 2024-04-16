@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:quote_of_the_day_app/favorite_quotes_list_screen.dart';
+import 'package:quote_of_the_day_app/screens/favorite_quotes_list_screen.dart';
 import 'package:quote_of_the_day_app/services/database_helper.dart';
 import 'package:http/http.dart' as http;
 import 'package:share_plus/share_plus.dart';
@@ -37,9 +37,9 @@ class _HomePageState extends State<HomePage> {
     final response = await http.get(Uri.parse('https://type.fit/api/quotes'));
     if (response.statusCode == 200) {
       data = jsonDecode(response.body.toString());
-      print('Success');
+      // print('Success');
     } else {
-      print('Error with status code: ' + response.statusCode.toString());
+      // print('Error with status code: ${response.statusCode}');
     }
   }
 
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quote of the day'),
+        title: const Text('Quote of the day'),
         centerTitle: true,
         backgroundColor: Colors.grey,
         actions: [
@@ -62,22 +62,22 @@ class _HomePageState extends State<HomePage> {
                 await Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => FavoriteQuotesListScreen()));
+                        builder: (context) => const FavoriteQuotesListScreen()));
                 setState(() {});
               },
-              child: Icon(Icons.favorite)),
-          SizedBox(
+              child: const Icon(Icons.favorite)),
+          const SizedBox(
             width: 20,
           )
         ],
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             gradient: LinearGradient(colors: [Colors.indigoAccent, Colors.white])),
         child: Center(
           child: Container(
             height: 300,
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
             decoration: BoxDecoration(
                 color: Colors.grey.shade400,
                 borderRadius: BorderRadius.circular(10)),
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                 future: getQuotesApiData(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
+                    return const Center(
                       child: Text(
                         'Loading...',
                         style: TextStyle(
@@ -102,15 +102,15 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Icon(Icons.format_quote,size: 30,),
+                            const Icon(Icons.format_quote,size: 30,),
                             Text(
                               data != null
                                   ? data[randomQuoteId]['text']
                                   : 'Loading...',
                               style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
+                                  const TextStyle(fontSize: 20, color: Colors.white),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Row(mainAxisAlignment: MainAxisAlignment.end,
@@ -118,14 +118,14 @@ class _HomePageState extends State<HomePage> {
                                 Text(
                                   data != null ? data[randomQuoteId]['author'] : '',
                                   textAlign: TextAlign.right,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15,
                                       color: Colors.black),
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             Row(
@@ -141,13 +141,13 @@ class _HomePageState extends State<HomePage> {
                                             setState(() {});
                                           },
                                           child: Container(
-                                            padding: EdgeInsets.symmetric(
+                                            padding: const EdgeInsets.symmetric(
                                                 horizontal: 20, vertical: 10),
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 color: Colors.white),
-                                            child: Row(
+                                            child: const Row(
                                               mainAxisSize: MainAxisSize.min,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
@@ -170,13 +170,13 @@ class _HomePageState extends State<HomePage> {
                                         return InkWell(
                                           onTap: () {},
                                           child: Container(
-                                            padding: EdgeInsets.symmetric(
+                                            padding: const EdgeInsets.symmetric(
                                                 horizontal: 20, vertical: 10),
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 color: Colors.white),
-                                            child: Row(
+                                            child: const Row(
                                               mainAxisSize: MainAxisSize.min,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
@@ -204,12 +204,12 @@ class _HomePageState extends State<HomePage> {
                                         data[randomQuoteId]['author']);
                                   },
                                   child: Container(
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 10),
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
                                         color: Colors.white),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisSize: MainAxisSize.min,
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -244,7 +244,7 @@ class _HomePageState extends State<HomePage> {
 
           setState(() {});
         },
-        child: Icon(Icons.refresh),
+        child: const Icon(Icons.refresh),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

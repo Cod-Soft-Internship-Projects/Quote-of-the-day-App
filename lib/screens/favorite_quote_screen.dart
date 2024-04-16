@@ -4,7 +4,7 @@ import 'package:share_plus/share_plus.dart';
 class FavoriteQuoteScreen extends StatefulWidget {
   final String savedQuote;
   final String savedQuoteAuthorName;
-  FavoriteQuoteScreen(
+  const FavoriteQuoteScreen(
       {super.key,
       required this.savedQuote,
       required this.savedQuoteAuthorName});
@@ -18,16 +18,16 @@ class _FavoriteQuoteScreenState extends State<FavoriteQuoteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Saved Quote'),
+        title: const Text('Saved Quote'),
         centerTitle: true,
         backgroundColor: Colors.grey,
       ),
-      body: Container(decoration: BoxDecoration(
+      body: Container(decoration: const BoxDecoration(
             gradient: LinearGradient(colors: [Colors.indigoAccent, Colors.white])),
         child: Center(
           child: Container(
               height: 300,
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               decoration: BoxDecoration(
                   color: Colors.grey, borderRadius: BorderRadius.circular(10)),
               child: Column(
@@ -43,14 +43,14 @@ class _FavoriteQuoteScreenState extends State<FavoriteQuoteScreen> {
                           Text(
                             widget.savedQuote,
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 30, color: Colors.white),
+                            style: const TextStyle(fontSize: 30, color: Colors.white),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Text(
                             widget.savedQuoteAuthorName,
-                            style: TextStyle(fontSize: 20, color: Colors.black),
+                            style: const TextStyle(fontSize: 20, color: Colors.black),
                           ),
                         ],
                       ),
@@ -58,16 +58,16 @@ class _FavoriteQuoteScreenState extends State<FavoriteQuoteScreen> {
                   )),
                   InkWell(
                     onTap: () {
-                      Share.share(widget.savedQuote+'\nBy: '+widget.savedQuoteAuthorName);
+                      Share.share('${widget.savedQuote}\nBy: ${widget.savedQuoteAuthorName}');
                     },
                     child: Container(
                       width: double.infinity,
                       height: 50,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
             gradient: LinearGradient(colors: [Colors.white, Colors.grey]),                          borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(10),
                               bottomRight: Radius.circular(10))),
-                      child: Center(
+                      child: const Center(
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,

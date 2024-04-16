@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quote_of_the_day_app/favorite_quote_screen.dart';
+import 'package:quote_of_the_day_app/screens/favorite_quote_screen.dart';
 import 'package:quote_of_the_day_app/services/database_helper.dart';
 
 class FavoriteQuotesListScreen extends StatefulWidget {
@@ -18,19 +18,19 @@ class _FavoriteQuotesListScreenState extends State<FavoriteQuotesListScreen> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Favorite Quotes'),
+          title: const Text('Favorite Quotes'),
           centerTitle: true,
           backgroundColor: Colors.grey,
         ),
         body: Container(
-          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: FutureBuilder(
               future: DatabaseHelper.instance.readRecord(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final data = snapshot.data!;
                   if (data.isEmpty) {
-                    return Center(
+                    return const Center(
                       child: Text(
                         'No Saved Quotes',
                         style: TextStyle(
@@ -57,20 +57,20 @@ class _FavoriteQuotesListScreenState extends State<FavoriteQuotesListScreen> {
                                             )));
                               },
                               tileColor: Colors.grey,
-                              leading: CircleAvatar(
+                              leading: const CircleAvatar(
                                 backgroundImage: AssetImage('assets/logo.jpg'),
                               ),
                               title: Text(
                                 data[index]['favQuote'],
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
                               subtitle: Text(
                                 data[index]['favQuoteAuthorName'],
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(color: Colors.black),
+                                style: const TextStyle(color: Colors.black),
                               ),
                               trailing: InkWell(
                                 onTap: () {
@@ -79,14 +79,14 @@ class _FavoriteQuotesListScreenState extends State<FavoriteQuotesListScreen> {
                                     
                                   });
                                 },
-                                child: Icon(
+                                child: const Icon(
                                   Icons.delete)),
                             ),
                           );
                         });
                   }
                 }
-                return Center(
+                return const Center(
                   child: Text(
                     'Loading...',
                     style: TextStyle(
